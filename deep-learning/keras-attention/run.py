@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
     named_args.add_argument('-p', '--padding', metavar='|',
                             help="""Amount of padding to use""",
-                            required=False, default=50, type=int)
+                            required=False, default=30, type=int)
 
     named_args.add_argument('-t', '--training-data', metavar='|',
                             help="""Location of training data""",
@@ -102,7 +102,7 @@ if __name__ == '__main__':
 
     named_args.add_argument('-b', '--batch-size', metavar='|',
                             help="""Location of validation data""",
-                            required=False, default=32, type=int)
+                            required=False, default=4, type=int)
     args = parser.parse_args()
     print(args)
 

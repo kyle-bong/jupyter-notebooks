@@ -1,0 +1,6 @@
+# model
+weights/*
+
+# data
+data/*.json
+data/*.csv

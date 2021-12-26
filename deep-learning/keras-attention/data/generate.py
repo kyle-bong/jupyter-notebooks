@@ -21,7 +21,7 @@ import babel
 from babel.dates import format_date
 
 fake = Faker()
-fake.seed(230517)
+Faker.seed(230517)
 random.seed(230517)
 
 FORMATS = ['short',
