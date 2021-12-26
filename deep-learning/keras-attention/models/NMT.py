@@ -35,11 +35,13 @@ def simpleNMT(pad_length=100,
                             weights=[np.eye(n_chars)],
                             name='OneHot')(input_)
 
+    # 인코더
     rnn_encoded = Bidirectional(LSTM(encoder_units, return_sequences=True),
                                 name='bidirectional_1',
                                 merge_mode='concat',
                                 trainable=trainable)(input_embed)
 
+    # 디코더
     y_hat = AttentionDecoder(decoder_units,
                              name='attention_decoder_1',
                              output_dim=n_labels,
