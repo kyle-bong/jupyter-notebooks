@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
     named_args.add_argument('-p', '--padding', metavar='|',
                             help="""Amount of padding to use""",
-                            required=False, default=30, type=int)
+                            required=False, default=40, type=int)
 
     named_args.add_argument('-t', '--training-data', metavar='|',
                             help="""Location of training data""",

@@ -27,7 +27,7 @@ if not os.path.exists(os.path.join(HERE, 'attention_maps')):
 
 SAMPLE_HUMAN_VOCAB = os.path.join(HERE, 'data', 'human_vocab.json')
 SAMPLE_MACHINE_VOCAB = os.path.join(HERE, 'data', 'machine_vocab.json')
-SAMPLE_WEIGHTS = os.path.join(HERE, 'weights', 'NMT.100-0.00.hdf5')
+SAMPLE_WEIGHTS = os.path.join(HERE, 'weights', 'NMT.48-0.17.hdf5')
 
 
 class Visualizer(object):

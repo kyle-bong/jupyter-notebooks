@@ -11,6 +11,13 @@ tfPrint = lambda d, T: tf.Print(input_=T, data=[T, tf.shape(T)], message=d)
 # __init__, compute_output_shape, build, call and get_config
 # get_config는 모델을 쉽게 불러올 수 있도록 하는 함수.
 # step method: cell의 계산
+#######
+# 수행 과정
+# step1. attention probabilities를 계산한다.
+# step2. context vector를 계산한다.
+# step3. hidden state를 업데이트한다.
+# step4. t 시점의 글자 계산
+####### 
 
 class AttentionDecoder(Recurrent):
 
@@ -209,15 +216,13 @@ class AttentionDecoder(Recurrent):
         self.built = True
 
     # 여기서부터 cell logic
-    # 기본적으로, cell의 각 execution은 이전 스텝에서의 정보만을 갖고 있음.
+    # 기본적으로, cell의 각 수행은 이전 스텝에서의 정보만을 갖고 있음.
     # 우리는 cell 내에 있는 인코딩된 시퀀스 전체에 접근해야 하므로, 이 정보를 어딘가에 저장해야 함.
     # 이러한 역할을 하는 메서드가 call 
     def call(self, x):
         # store the whole sequence so we can "attend" to it at each timestep
         self.x_seq = x
 
-        # 등식 1번 계산
-            # Calculate the attention probabilities α=(α1,…,αT) based on the encoded sequence
         # apply the a dense layer over the time dimension of the sequence
         # do it here because it doesn't depend on any previous steps
         # thefore we can save computation time:
@@ -250,9 +255,10 @@ class AttentionDecoder(Recurrent):
 
         # ytm: previous character
         # stm: hidden state
+        # obtain elements of the previous time step
         ytm, stm = states
 
-        # 등식 1번 (인코딩된 시퀀스와 디코더 셀의 hiddenstate를 바탕으로 attention 확률 계산)
+        # 등식 1번 (인코딩된 시퀀스와 디코더 셀의 hidden state를 바탕으로 attention 확률 계산)
 
         # hidden state을 input sequence의 글자의 개수만큼 반복함.
         # repeat the hidden state to the length of the sequence
